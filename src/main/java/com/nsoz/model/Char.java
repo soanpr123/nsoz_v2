@@ -773,7 +773,14 @@ public class Char {
                 setXY(xy[0], xy[1]);
                 changeMap(this.saveCoordinate);
             }
+//            for (byte j = 0; j < this.equipment.length; j++) {
+//                Item item = this.equipment[j];
+//                if (item != null && item.id == 1088) {
 
+                     //   zone.getService().addEffect(this, 170, 0, 500, 0);
+
+//                }
+//            }
         }
 
     }
@@ -4737,7 +4744,7 @@ public class Char {
         try {
             short x = ms.reader().readShort();
             short y = ms.reader().readShort();
-            System.out.println(" x " + x + "y" + y);
+            System.out.println("move x : "+x + " move y : "+y);
             if (zone != null) {
                 zone.move(this, x, y);
             }
@@ -13376,6 +13383,7 @@ public class Char {
                         getService().npcChat(NpcName.TASHINO, "Hãy chừa 1 ô trống trong hành trang để nhận bí kíp.");
                         return;
                     }
+
                     addGold(-1000);
                     int itemId = this.equipment[ItemTemplate.TYPE_BIKIP].id;
                     getService().deleteItemBody(ItemTemplate.TYPE_BIKIP);
@@ -13384,17 +13392,19 @@ public class Char {
                     item.isLock = true;
                     int random = NinjaUtils.nextInt(1, 5);
                     ArrayList<ItemOption> options = new ArrayList<>();
+
                     options.add(new ItemOption(81, NinjaUtils.nextInt(10, 20)));
                     options.add(new ItemOption(82, NinjaUtils.nextInt(500, 1500)));
                     options.add(new ItemOption(83, NinjaUtils.nextInt(500, 1500)));
                     options.add(new ItemOption(84, NinjaUtils.nextInt(10, 20)));
                     options.add(new ItemOption(86, NinjaUtils.nextInt(10, 20)));
-                    options.add(new ItemOption(87, NinjaUtils.nextInt(100, 800)));
+                    options.add(new ItemOption(87, NinjaUtils.nextInt(100, 2000)));
                     options.add(new ItemOption(88, NinjaUtils.nextInt(100, 1000)));
                     options.add(new ItemOption(89, NinjaUtils.nextInt(100, 1000)));
                     options.add(new ItemOption(90, NinjaUtils.nextInt(100, 1000)));
                     options.add(new ItemOption(91, NinjaUtils.nextInt(10, 20)));
                     options.add(new ItemOption(92, NinjaUtils.nextInt(10, 20)));
+                    options.add(new ItemOption(94, NinjaUtils.nextInt(20, 50)));
                     options.add(new ItemOption(95, NinjaUtils.nextInt(10, 20)));
                     options.add(new ItemOption(96, NinjaUtils.nextInt(10, 20)));
                     options.add(new ItemOption(97, NinjaUtils.nextInt(10, 20)));
@@ -15812,7 +15822,7 @@ public class Char {
             clone.human.addExp(exp);
             return;
         }
-        exp *=40;
+        exp *=Config.getInstance().getExp();
         if (this.expDown > 0) {
             if (this.expDown - exp >= 0) {
                 this.expDown -= exp;

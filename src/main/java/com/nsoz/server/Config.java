@@ -70,7 +70,7 @@ public class Config {
     private String notification;
     private int messageSizeMax;
     private String event;
-
+    private int exp;
     public boolean load() {
         try {
             FileInputStream input = new FileInputStream(new File("config.properties"));
@@ -84,6 +84,7 @@ public class Config {
             port = Integer.parseInt(props.getProperty("server.port"));
             dbDriver = props.getProperty("db.driver");
             dbHost = props.getProperty("db.host");
+            exp = Integer.parseInt(props.getProperty("EXPUP"));
             dbPort = Integer.parseInt(props.getProperty("db.port"));
             dbUser = props.getProperty("db.user");
             dbPassword = props.getProperty("db.password");

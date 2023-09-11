@@ -373,7 +373,7 @@ public class Server {
                 for (int k = 0; k < effectCharInfo.arrEfInfo.length; k++) {
                     JSONObject o = (JSONObject) jA.get(k);
                     effectCharInfo.arrEfInfo[k] = new EffectInfoPaint();
-                    effectCharInfo.arrEfInfo[k].idImg = ((Long) o.get("imgId")).shortValue();
+                    effectCharInfo.arrEfInfo[k].idImg = ((Long) o.get("id")).shortValue();
                     effectCharInfo.arrEfInfo[k].dx = ((Long) o.get("dx")).byteValue();
                     effectCharInfo.arrEfInfo[k].dy = ((Long) o.get("dy")).byteValue();
                 }
@@ -746,7 +746,7 @@ public class Server {
                 dos.writeByte(templates.size());
 
                 for (SkillTemplate template : templates) {
-                    System.out.println(template.name);
+
                     dos.writeByte(template.id);
                     dos.writeUTF(template.name);
                     dos.writeByte(template.maxPoint);

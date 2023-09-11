@@ -36,7 +36,7 @@ public class Controller implements IMessageHandler {
         if (mss != null) {
             try {
                 int command = mss.getCommand();
-                System.out.println(" CMD " + command);
+
                 if (command != CMD.NOT_LOGIN && command != CMD.NOT_MAP && command != CMD.SUB_COMMAND) {
                     if (user == null || _char == null || user.isCleaned || _char.isCleaned) {
                         return;

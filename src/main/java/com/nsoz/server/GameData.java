@@ -20,9 +20,8 @@ import com.nsoz.skill.Skill;
 import com.nsoz.skill.SkillOptionTemplate;
 import com.nsoz.skill.SkillTemplate;
 import com.nsoz.util.NinjaUtils;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
+
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,7 +68,7 @@ public class GameData extends Thread {
     public static final int[][] NGOC_KHAM_EXP = {{0, 0}, {200, 10}, {500, 20}, {1000, 50}, {2000, 100},
     {5000, 200}, {10000, 500}, {20000, 1000}, {50000, 2000}, {100000, 5000},
     {100000, 10000}};
-    
+
     public static final HashMap<Integer, Long> HASH_MAP = new HashMap<>();
 
     private static final GameData instance = new GameData();
@@ -111,7 +110,27 @@ public class GameData extends Thread {
         }
         return langs.get("en");
     }
-
+    public static ByteArrayOutputStream loadFile2(String url) {
+        try {
+            FileInputStream openFileInput = new FileInputStream(url);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = openFileInput.read(bArr);
+                if (read == -1) {
+                    break;
+                }
+                byteArrayOutputStream.write(bArr, 0, read);
+            }
+            byteArrayOutputStream.flush();
+            byteArrayOutputStream.close();
+            openFileInput.close();
+            return byteArrayOutputStream;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public byte[] loadFile(String url) {
         synchronized (resources) {
             if (resources.containsKey(url)) {
@@ -312,7 +331,7 @@ public class GameData extends Thread {
         }
         return null;
     }
-    
+
     public Skill getSkillWithLevel(int classId, int level) {
         Clazz n = clazzs.get(classId);
         if (n != null) {
@@ -384,7 +403,7 @@ public class GameData extends Thread {
             }
         }
     }
-    
+
     public void close() {
         running = false;
     }

@@ -63,32 +63,32 @@ public class ItemTemplate {
 
     public boolean isKunai() {
         return this.id == 99 || this.id == 100 || this.id == 101 || this.id == 102 || this.id == 103 || this.id == 333
-                || this.id == 508 || this.id == 634 || this.id == 371;
+                || this.id == 508 || this.id == 634 || this.id == 371||this.id == 1089;
     }
 
     public boolean isKiem() {
         return this.id == 194 || this.id == 94 || this.id == 95 || this.id == 96 || this.id == 97 || this.id == 98
-                || this.id == 369 || this.id == 506 || this.id == 632 || this.id == 369 || this.id == 331;
+                || this.id == 369 || this.id == 506 || this.id == 632 || this.id == 369 || this.id == 331||this.id == 1088;
     }
 
     public boolean isDao() {
         return this.id == 104 || this.id == 105 || this.id == 106 || this.id == 107 || this.id == 108 || this.id == 373
-                || this.id == 335 || this.id == 510 || this.id == 636;
+                || this.id == 335 || this.id == 510 || this.id == 636||this.id == 1086;
     }
 
     public boolean isCung() {
         return this.id == 109 || this.id == 110 || this.id == 111 || this.id == 112 || this.id == 113 || this.id == 372
-                || this.id == 334 || this.id == 509 || this.id == 635;
+                || this.id == 334 || this.id == 509 || this.id == 635||this.id == 1090;
     }
 
     public boolean isTieu() {
         return this.id == 114 || this.id == 115 || this.id == 116 || this.id == 117 || this.id == 118 || this.id == 370
-                || this.id == 332 || this.id == 507 || this.id == 633;
+                || this.id == 332 || this.id == 507 || this.id == 633||this.id == 1087;
     }
 
     public boolean isQuat() {
         return this.id == 119 || this.id == 120 || this.id == 121 || this.id == 122 || this.id == 123 || this.id == 374
-                || this.id == 336 || this.id == 511 || this.id == 637;
+                || this.id == 336 || this.id == 511 || this.id == 637||this.id == 1085;
     }
 
     public boolean isTypeClothe() {

@@ -1365,7 +1365,7 @@ public class Service extends AbsService {
             ds.writeInt(player.getCoinInt());// xu
             ds.writeInt(player.getYenInt());// yen
             ds.writeInt(player.user.gold);// luong
-            
+
             ds.writeByte(player.numberCellBag);// bag
             for (int i = 0; i < player.numberCellBag; i++) {
                 Item item = player.bag[i];
@@ -1503,7 +1503,7 @@ public class Service extends AbsService {
             ds.writeInt(player.getCoinInt());// yen
             ds.writeInt(player.getYenInt());// xu
             ds.writeInt(player.user.gold);// luong
-           // ds.writeInt(player.user.vnd);// vn            
+           // ds.writeInt(player.user.vnd);// vn
             ds.writeByte(player.numberCellBag);// bag
             for (int i = 0; i < player.numberCellBag; i++) {
                 Item item = player.bag[i];
@@ -1626,8 +1626,22 @@ public class Service extends AbsService {
                 ds.flush();
                 sendMessage(ms);
                 ms.cleanup();
+            }else{
+                System.out.println("Data/Img/Effect/" + session.zoomLevel + "/effData/" + id );
+                byte[] ab = GameData.loadFile2("Data/Img/Effect/" + session.zoomLevel + "/effData/" + id ).toByteArray();
+                System.out.println(ab);
+                Message ms = new Message(CMD.GET_EFFECT);
+                DataOutputStream ds = ms.writer();
+                ds.writeByte(2);
+                ds.writeByte(id);
+                ds.writeShort(ab.length);
+                ds.write(ab);
+                ds.flush();
+                sendMessage(ms);
+                ms.cleanup();
             }
         } catch (Exception ex) {
+            System.out.println("load eff loi " +ex.getMessage());
             Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -2265,8 +2279,10 @@ public class Service extends AbsService {
     }
 
     public void requestIcon(Message ms) {
+
         try {
             int icon = ms.reader().readInt();
+            System.out.println("Data/Img/Small/" + session.zoomLevel + "/Small" + icon + ".png");
             byte[] ab = GameData.getInstance().loadFile("Data/Img/Small/" + session.zoomLevel + "/Small" + icon + ".png");
             Message mss = messageNotMap(CMD.REQUEST_ICON);
             DataOutputStream ds = mss.writer();
@@ -2560,7 +2576,7 @@ public class Service extends AbsService {
             Message mss = new Message(CMD.UPGRADE);
             DataOutputStream ds = mss.writer();
             ds.writeByte(type);
-            ds.writeInt(player.user.gold);            
+            ds.writeInt(player.user.gold);
             ds.writeInt(player.getCoinInt());
             ds.writeInt(player.getYenInt());
             ds.writeByte(item.upgrade);
